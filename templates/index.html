@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login Form - Modal</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+    <link rel='stylesheet prefetch'
+          href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons'>
+
+    <link rel="stylesheet" href="../static/css/style.css">
+
+
+</head>
+
+<body>
+
+<!-- Form-->
+<div class="form">
+    <div class="form-toggle"></div>
+    <div class="form-panel one">
+        <div class="form-header">
+            <h1>Решение Уравнений</h1>
+        </div>
+        <div class="form-content">
+            <form action='/' method="post">
+                <label for="username" style="font-size: 24px">Уравнение</label>
+                <div class="form-group">
+                    {{ form.csrf_token }}
+                    {{ form.a(class="form-control") }}
+                    <p style="font-size: 30px">x&#8308</p>
+                    {{ form.b(class="form-control") }}
+                    <p style="font-size: 30px">x&sup3</p>
+                    {{ form.c(class="form-control") }}
+                    <p style="font-size: 30px">x&sup2 </p>
+                    {{ form.d(class="form-control") }}
+                    <p style="font-size: 30px">x</p>
+                    {{ form.e(class="form-control") }}
+                    <p style="font-size: 30px"> =0</p>
+                </div>
+                <div style="margin-top: 10%;padding-bottom: 10%">
+                    {{ form.submit(type="submit", class="subm") }}
+                </div>
+            </form>
+            {% if check %}
+            <label for="username" style="font-size: 24px">Корни:</label>
+            <div class="form-group" style="display:flex; flex-direction: column">
+                {% if answer|length > 0 %}
+                {% for root in answer %}
+                <p style="font-size: 18px; font-weight: revert">x<sub> {{loop.index}}</sub> = {{root}}</p>
+                {% endfor %}
+
+                {% else %}
+                <p>Корней нет</p>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://codepen.io/andytran/pen/vLmRVp.js'></script>
+
+<script src="../static/js/index.js"></script>
+
+</body>
+</html>
